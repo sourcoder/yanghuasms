@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/signin.css">
+		<title>扬华SMS-注册</title>
+	</head>
+	<body>
+		<div class="container">
+			<form class="form-signin">
+				<h2 class="form-signin-heading">扬华SMS－注册</h2>
+				<label for="inviteCode" class="sr-only">邀请码</label>
+				<input type="text" id="inviteCode" class="form-control" placeholder="请输入邀请码" required>
+				<label for="inputUsername" class="sr-only">Username</label>
+				<input type="text" id="inputUsername" class="form-control" placeholder="请输入用户名" required autofocus>
+				<label for="inputPassword" class="sr-only">Password</label>
+				<input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+				<label for="confirmPassword" class="sr-only">Confirm Password</label>
+				<input type="password" id="confirmPassword" class="form-control" placeholder="请再次输入密码" required>
+				<label for="inputTel" class="sr-only">请输入电话号码</label>
+				<input type="tel" id="inputTel" class="form-control" placeholder="请输入电话号码" required>
+				<div class="row">
+					<div class="col-xs-5">
+						<label for="inputVerificationCode" class="sr-only">请输入验证码</label>
+						<input type="tel" id="inputVerificationCode" class="form-control" placeholder="请输入验证码" required>
+					</div>
+					<div class="col-xs-7">
+						<img src="file:///Users/Catfish/Documents/PHP%20Projects/test/vc.png">
+					</div>
+				</div>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+				<a class="btn btn-lg btn-default btn-block"
+				href="javascript::" >取消</a>
+			</form>
+		</div>
+	</body>
+</html>
