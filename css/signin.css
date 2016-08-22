@@ -78,6 +78,17 @@ ul.nav-tabs li:last-child a{
 ul.nav-tabs.affix{
   top: 30px; /* Set the top position of pinned element */
 }
+.cbox{
+  width:20px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-top:-2px;
+}
+td{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
 /*
 .form-signin input:nth-last-child(1) {
   margin-bottom: 10px;

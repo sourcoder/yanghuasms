@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/signin.css">
+	</head>
+	<body class="fix-top">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a href="##" class="navbar-brand">扬华SMS</a>
+				</div>
+				<div class="collapse navbar-collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#">控制台</a></li>
+						<li><a href="##">通知</a></li>
+						<li><a href="#">招新管理</a></li>
+						<li><a href="#">历史记录</a></li>
+						<li class="active"><a href="#">成员管理</a></li>
+						<li><a href="#">个人中心</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="btn-group btn-group-lg" role="group" aria-label="">
+								<button type="button" class="btn btn-default" id="add-member">添加成员</button>
+								<button type="button" class="btn btn-default" id="transfer-admin">转让管理员</button>
+							</div>
+						</div>
+					</div>
+					
+					<div class="panel panel-defalut">
+						<div class="panel-body">
+							<label>邀请码：</label>
+							<label>ubakfbe1</label>
+							<div class="pull-right">
+								<button class="btn btn-primary">重置邀请码</button>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<table class="table table-responsive">
+							<thead>
+								<th>用户名</th>
+								<th>姓名</th>
+								<th>级别</th>
+								<th>操作</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>天宇</td>
+									<td>Catfish</td>
+									<td>超级管理员</td>
+									<td>
+										<div class="btn-group btn-group-sm" role="group" aria-label="">
+											<button type="button" class="btn btn-default btn-edit">编辑</button>
+											<button type="button" class="btn btn-default btn-delete">删除</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>ls</td>
+									<td>李四</td>
+									<td>管理员</td>
+									<td>
+										<div class="btn-group btn-group-sm" role="group" aria-label="">
+											<button type="button" class="btn btn-default btn-edit">编辑</button>
+											<button type="button" class="btn btn-default btn-delete">删除</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>wmz</td>
+									<td>王五</td>
+									<td>协管员</td>
+									<td>
+										<div class="btn-group btn-group-sm" role="group" aria-label="">
+											<button type="button" class="btn btn-default btn-edit">编辑</button>
+											<button type="button" class="btn btn-default btn-delete">删除</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add-member-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="member-title">添加用户</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" placeholder="请输入用户ID">
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>Success！</strong> Better check yourself, you're not looking too good.
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="transfer-member-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">转让管理员</h4>
+					</div>
+					<div class="modal-body">
+						<select class="form-control">
+							<option>天宇</option>
+							<option>张三</option>
+						</select>
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>Success！</strong> Better check yourself, you're not looking too good.
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-danger">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="edit-member-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title">编辑成员</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" readOnly="true" id="member-username">
+						<input type="text" class="form-control" readOnly="true" id="member-name">
+						<select class="form-control" id="member-permission">
+							<option>协管员</option>
+							<option>成员</option>
+						</select>
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>Success！</strong> Better check yourself, you're not looking too good.
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/member.js"></script>
+	</body>
+</html>

@@ -8,7 +8,6 @@ class dao {
     $this->mem = new Memcache();
     $this->mem->connect($config[$MEMCACHE_HOST],$config[$MEMCACHE_PORT]);
   }
-  
   function close(){
     $this->conn->close();
     $this->mem->close();
