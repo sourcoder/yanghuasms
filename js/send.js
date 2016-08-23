@@ -56,7 +56,7 @@ $(function() {
 	$("#time-text").bind("input propertychange", function() {
 		var str1 = "XXX同学您好，";
 		var str2 = "将于扬华办公室(031037)召开全员例会，请准时参加，若有事需向主编刘禺杉请假。谢谢!";
-		$("#overview").html(str1 + $("#time-text").val() + str2);
+		$("#overview").html(str1 + "<strong>"+$("#time-text").val()+"</strong>" + str2);
 	});
 	//todo
 	$("#time-fresh-text").bind("input propertychange", function() {
