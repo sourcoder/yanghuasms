@@ -7,5 +7,5 @@ define("SQL_DATABASE", "SQL_DATABASE");
 define("MEMCACHE_HOST", "MEMCACHE_HOST");
 define("MEMCACHE_PORT", "MEMCACHE_PORT");
 define("MEMCACHE_TIME", "MEMCACHE_TIME");
-$config = array(SQL_HOST => "localhost", SQL_PORT => 3306, SQL_USERNAME => "root", SQL_PASSWORD => "", SQL_DATABASE => "nineoneporn", MEMCACHE_HOST => "127.0.0.1", MEMCACHE_PORT => 11211, MEMCACHE_TIME => 3600);
+$config = array(SQL_HOST => "localhost", SQL_PORT => 3306, SQL_USERNAME => "root", SQL_PASSWORD => "", SQL_DATABASE => "yanghua_sms", MEMCACHE_HOST => "127.0.0.1", MEMCACHE_PORT => 11211, MEMCACHE_TIME => 3600);
 ?>
