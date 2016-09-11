@@ -30,5 +30,9 @@ class PatternCheck {
 		$pattern = "/^[0-9A-Za-z]*$/i";
 		return preg_match($pattern, $str) && preg_match("/[A-Za-z]/", $str) && preg_match("/\d/", $str);
 	}
+	function permission_check($str) {
+		$pattern = "/^[0-9]{2,3}$/i";
+		return preg_match($pattern, $str);
+	}
 }
 ?>

@@ -10,7 +10,7 @@ $R = new redirect();
 $D = new dao();
 $P = new PER();
 $uid = $A->getuserid();
-$uinfo = null;
+$upermission = $A->getpermission();
 $id = null;
 $row = null;
 $result = null;
@@ -22,12 +22,6 @@ if (isset($_GET["id"])) {
 		$row = $result[0];
 		$sql = "SELECT id,username,name,permission FROM sms_user WHERE organization='$id' ORDER BY permission DESC";
 		$result = $D->getcachequery($sql);
-		for ($i = 0; $i < count($result); $i++) {
-			if ($result[$i]["id"] == $uid) {
-				$uinfo = $result[$i];
-				break;
-			}
-		}
 	} else {
 		$R->toindex();
 	}
@@ -74,16 +68,16 @@ if (isset($_GET["id"])) {
 			<div class="row">
 				<div class="col-md-12 col-lg-12">
 							<?php
-if (intval($uinfo["permission"]) >= 60) {
+if ($upermission >= 60) {
 	echo "<div class=\"panel panel-default\">\n<div class=\"panel-body\">\n";
 	echo "<div class=\"btn-group btn-group-lg\" role=\"group\" aria-label=\"\">";
 	echo "<button type=\"button\" class=\"btn btn-default\" id=\"add-member\">添加成员</button>";
 }
-if (intval($uinfo["permission"]) >= 80) {
+if ($upermission >= 80) {
 	echo "<button type=\"button\" class=\"btn btn-default\" id=\"transfer-admin\">转让管理员</button>";
 }
 
-if (intval($uinfo["permission"]) >= 60) {
+if ($upermission >= 60) {
 	echo "</div>\n</div>\n</div>\n";
 }
 ?>
@@ -96,7 +90,7 @@ if (intval($uinfo["permission"]) >= 60) {
 							<label><?php echo $row["invite"]; ?></label>
 							<div class="pull-right">
 							<?php
-if (intval($uinfo["permission"]) >= 60) {
+if ($upermission >= 60) {
 	echo "<button class=\"btn btn-primary\">重置邀请码</button>";
 }
 ?>
@@ -109,7 +103,7 @@ if (intval($uinfo["permission"]) >= 60) {
 								<th>用户名</th>
 								<th>姓名</th>
 								<th>级别</th>
-								<?php if (intval($uinfo["permission"]) >= 60) {
+								<?php if ($upermission >= 60) {
 	echo "<th>操作</th>";
 }
 ?>
@@ -123,15 +117,15 @@ for ($i = 0; $i < count($result); $i++) {
 									<td><?php echo $result[$i]["name"]; ?></td>
 									<td><?php echo $P->getname(intval($result[$i]["permission"])); ?></td>
 									<?php
-if (intval($uinfo["permission"]) >= 60) {
+if ($upermission >= 60) {
 		echo "<td>\n";
 		echo "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"\">\n";
 	}
-	if (intval($uinfo["permission"]) > intval($result[$i]["permission"])) {
+	if ($upermission > intval($result[$i]["permission"])) {
 		echo "<button type=\"button\" class=\"btn btn-default btn-edit\" uid=\"" . $result[$i]["id"] . "\">权限编辑</button>\n";
 		echo "<button type=\"button\" class=\"btn btn-default btn-delete\" uid=\"" . $result[$i]["id"] . "\">删除</button>\n";
 	}
-	if (intval($uinfo["permission"]) >= 60) {
+	if ($upermission >= 60) {
 		echo "</div>\n";
 		echo "</td>\n";
 	}
@@ -165,7 +159,7 @@ if (intval($uinfo["permission"]) >= 60) {
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="transfer-member-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal fade" id="transfer-admin-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -173,10 +167,12 @@ if (intval($uinfo["permission"]) >= 60) {
 						<h4 class="modal-title">转让管理员</h4>
 					</div>
 					<div class="modal-body">
-						<select class="form-control" id="userlist">
+						<select class="form-control" id="transfer-user">
 						<?php
 for ($i = 0; $i < count($result); $i++) {
-	echo "<option value=\"" . $result[$i]["id"] . "\">" . $result[$i]["username"] . "</option>\n";
+	if ($result[$i]["id"] != $uid && intval($result[$i]["permission"]) < $upermission) {
+		echo "<option value=\"" . $result[$i]["id"] . "\">" . $result[$i]["username"] . "</option>\n";
+	}
 }
 ?>
 						</select>
@@ -185,7 +181,7 @@ for ($i = 0; $i < count($result); $i++) {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-danger id="add-member-btn"">确定</button>
+						<button type="button" class="btn btn-danger" id="transfer-admin-btn">确定</button>
 					</div>
 				</div>
 			</div>
@@ -195,18 +191,18 @@ for ($i = 0; $i < count($result); $i++) {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title">编辑成员</h4>
+						<h4 class="modal-title">权限编辑</h4>
 					</div>
 					<div class="modal-body">
 						<input type="text" class="form-control" readOnly="true" id="member-username">
 						<input type="text" class="form-control" readOnly="true" id="member-name">
 						<select class="form-control" name="member_permision" id="member-permission">
 							<?php
-if (intval($uinfo["permission"]) > 60) {
+if ($upermission > 60) {
 	echo "<option value=\"60\">协管员</option>\n";
 }
-if (intval($uinfo["permission"]) > 40) {
-	echo "<option value=\"40\">成员</option>\n";
+if ($upermission > 20) {
+	echo "<option value=\"20\">成员</option>\n";
 }
 ?>
 						</select>
@@ -215,7 +211,7 @@ if (intval($uinfo["permission"]) > 40) {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary">确定</button>
+						<button type="button" class="btn btn-primary" id="edit-member-btn">确定</button>
 					</div>
 				</div>
 			</div>

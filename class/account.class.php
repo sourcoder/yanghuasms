@@ -97,14 +97,24 @@ class account {
 	}
 	function getpermission() {
 		if (isset($_SESSION["permission"])) {
-			return $_SESSION["permission"];
+			return intval($_SESSION["permission"]);
 		} else {
 			return null;
 		}
 	}
+	function setpermission($uid, $permission) {
+		$sql = "UPDATE sms_user SET permission=? WHERE id=?";
+		$stmt = $this->D->getconn()->prepare($sql);
+		$stmt->bind_param("ss", $permission, $uid);
+		if ($this->getuserid() == $uid) {
+			$_SESSION["permission"] = $permission;
+		}
+		return $stmt->execute();
+	}
 	function logout() {
 		unset($_SESSION["login"]);
 		unset($_SESSION["username"]);
+		unset($_SESSION["permission"]);
 	}
 }
 function logcheck() {
