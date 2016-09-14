@@ -6,5 +6,8 @@ class redirect {
 	function tologin() {
 		header("Location:login.php");
 	}
+	function toprofile() {
+		header("Location:profile.php");
+	}
 }
 ?>

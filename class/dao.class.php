@@ -7,7 +7,11 @@ class dao {
 	function __construct() {
 		global $config;
 		$this->conn = new mysqli($config[SQL_HOST], $config[SQL_USERNAME], $config[SQL_PASSWORD], $config[SQL_DATABASE]);
-		$this->mem = new Memcache();
+		try {
+			$this->mem = new Memcache();
+		} catch (Exception $e) {
+			$this->mem = new Memcached();
+		}
 		$this->mem->connect($config[MEMCACHE_HOST], $config[MEMCACHE_PORT]);
 		$this->time = (int) $config[MEMCACHE_TIME];
 	}
